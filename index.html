@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Md. Fuad Hasan | Web Developer</title>
+<meta name="description" content="Md. Fuad Hasan is a web developer in Dhaka and final-year Computer Science student at Independent University, Bangladesh. He built the ELRC Management System, PushtiPath and DTicket.">
+<meta property="og:title" content="Md. Fuad Hasan | Web Developer">
+<meta property="og:description" content="Web applications that are deployed and used: ELRC Management System, PushtiPath, DTicket.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fuaadhassaan.github.io/">
+<meta property="og:image" content="https://fuaadhassaan.github.io/assets/elrc-dashboard.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>
+  // The theme, before first paint. Remembered per browser; otherwise the system's.
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#home" aria-label="Md. Fuad Hasan, home"><span class="mono">FH</span><span>Fuad Hasan</span></a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button type="button" class="icon-btn" id="theme" aria-label="Switch between light and dark">◐</button>
+  </div>
+</header>
+
+<main id="home">
+
+<section class="hero wrap">
+  <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Open to junior web and software developer roles · Dhaka, Bangladesh</p>
+  <h1>I build web applications that people use at work, every day.</h1>
+  <p class="lead">I'm <strong>Md. Fuad Hasan</strong>, a final-year Computer Science student at Independent University, Bangladesh. I designed and built the system a university language centre now runs on: five role-based consoles, one live database, attendance to payroll paperwork.</p>
+  <div class="actions">
+    <a class="btn primary" href="#work">See my work</a>
+    <a class="btn" href="assets/Md_Fuad_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV <span aria-hidden="true">↓</span></a>
+    <a class="btn ghost" href="mailto:fuaadhassaan@gmail.com">Email me</a>
+  </div>
+  <ul class="facts" aria-label="At a glance">
+    <li><b>4</b><span>projects live on the web</span></li>
+    <li><b>5</b><span>user roles in one system</span></li>
+    <li><b>2 yrs</b><span>university office experience</span></li>
+    <li><b>BSc CS</b><span>graduating 2026, HRM minor</span></li>
+  </ul>
+</section>
+
+<section id="work" class="wrap">
+  <h2 class="sec"><span>Selected work</span></h2>
+
+  <article class="feature">
+    <div class="feature-text">
+      <p class="tag">Case study · 2026 · Independent University, Bangladesh</p>
+      <h3>ELRC Management System</h3>
+      <p>The English Language Resources Center ran on paper forms, spreadsheets and chat messages. I replaced them with one website that tutors, faculty, managers, the Head of Department and admins each sign in to and see their own console.</p>
+      <ul class="ticks">
+        <li><b>Five consoles, one codebase.</b> The four oversight consoles are generated from the tutor console by a build script, so a change is made once.</li>
+        <li><b>Attendance that runs itself.</b> Sign-in and sign-out tracking, a daily break limit, inactivity sign-out, and an automatic 5 PM close on Dhaka time.</li>
+        <li><b>Live everywhere.</b> A change in one console appears in every other within a second, without reloading.</li>
+        <li><b>Paperwork from data.</b> Monthly tutor bills, budget certification memos and cover pages are generated from logged hours, ready to print.</li>
+        <li><b>Secured in the database.</b> Role-based Firestore rules, salted PBKDF2 password hashing, a Content Security Policy and an append-only audit log.</li>
+      </ul>
+      <p class="stack"><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Firebase Firestore</span><span>Firebase Auth</span><span>Vercel</span></p>
+      <div class="actions">
+        <a class="btn primary" href="https://elrcweb.vercel.app" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="fine">Documented in a 25-page Software Requirements Specification following ISO/IEC/IEEE 29148. The code is private because the system is in use; I'm happy to walk through it.</p>
+    </div>
+    <figure class="feature-shot">
+      <img src="assets/elrc-dashboard.png" alt="Layout of the ELRC oversight dashboard: navigation, signed-in tutors, request totals, tutoring activity and sign-in times" width="1520" height="1400">
+      <figcaption>The oversight dashboard (layout from the SRS)</figcaption>
+    </figure>
+  </article>
+
+  <div class="grid">
+    <article class="card">
+      <a class="shot" href="https://pushtipath.web.app" target="_blank" rel="noopener"><img src="assets/pushtipath.webp" alt="PushtiPath sign-in screen in Bangla" width="1280" height="800"></a>
+      <div class="card-body">
+        <p class="tag">Mobile health · 2026</p>
+        <h3>PushtiPath (পুষ্টিপথ)</h3>
+        <p>A mobile health app for monitoring and preventing malnutrition in children under five. Parents record check-ups; the app computes WHO growth z-scores, flags wasting, stunting and underweight, and says when to see a health worker. Works in Bangla and English, and offline.</p>
+        <p class="stack"><span>Flutter</span><span>Dart</span><span>Firebase</span></p>
+        <p class="links"><a href="https://pushtipath.web.app" target="_blank" rel="noopener">Live app ↗</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="shot" href="https://dticket.vercel.app" target="_blank" rel="noopener"><img src="assets/dticket.webp" alt="DTicket landing page: the all-in-one ticketing website" width="1280" height="800"></a>
+      <div class="card-body">
+        <p class="tag">Booking platform · 2025 – 2026</p>
+        <h3>DTicket</h3>
+        <p>Bus ticket booking and management. Passengers pick seats on a live seat map and download a PDF e-ticket; Admin, Counter Manager and Company Manager each get a console with statistics, CSV export and an audit log. Rebuilt on Firestore from my earlier PHP and MySQL version.</p>
+        <p class="stack"><span>JavaScript</span><span>Firebase Firestore</span><span>Vercel</span></p>
+        <p class="links"><a href="https://dticket.vercel.app" target="_blank" rel="noopener">Live site ↗</a><a href="https://github.com/fuaadhassaan/DTicket" target="_blank" rel="noopener">Code ↗</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="shot" href="https://iubacmwpm.vercel.app" target="_blank" rel="noopener"><img src="assets/wpm.webp" alt="IUB ACM typing contest website after the contest closed" width="1280" height="800"></a>
+      <div class="card-body">
+        <p class="tag">Event site · IUB ACM Student Chapter</p>
+        <h3>IUB ACM WPM Typing Contest</h3>
+        <p>The contest site for the IUB ACM Student Chapter: timed, scheduled contests, randomised passages so no two participants type the same text, and admin management of users, results and schedules.</p>
+        <p class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Google Apps Script</span></p>
+        <p class="links"><a href="https://iubacmwpm.vercel.app" target="_blank" rel="noopener">Live site ↗</a><a href="https://github.com/fuaadhassaan/IUBACMSC-WPM-Contest" target="_blank" rel="noopener">Code ↗</a></p>
+      </div>
+    </article>
+
+    <article class="card plain">
+      <div class="card-body">
+        <p class="tag">HR platform</p>
+        <h3>FairHire+</h3>
+        <p>A responsive, multi-role HR and recruitment system with separate portals for Admins, HR, Managers and Employees, automated recruitment workflows and data visualisation. It is where my Human Resource Management minor meets my code.</p>
+        <p class="stack"><span>PHP</span><span>MySQL</span><span>JavaScript</span></p>
+        <p class="links"><a href="https://github.com/fuaadhassaan/Fairhire" target="_blank" rel="noopener">Code ↗</a></p>
+      </div>
+      <div class="card-body second">
+        <p class="tag">Hardware</p>
+        <h3>IoT Smart Garden</h3>
+        <p>Automated irrigation, temperature control and soil monitoring for small plantations in closed environments, built on ESP32 boards and sensors.</p>
+        <p class="stack"><span>C++</span><span>Arduino IDE</span><span>ESP32</span></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="skills" class="wrap">
+  <h2 class="sec"><span>Skills</span></h2>
+  <div class="skills">
+    <div><h3>Languages</h3><p>JavaScript (ES6+), PHP, Dart, Java, C++, SQL, HTML5, CSS3</p></div>
+    <div><h3>Frameworks and platforms</h3><p>Firebase (Firestore, Authentication, Security Rules, Hosting), Flutter, MySQL, Vercel, Arduino / ESP32</p></div>
+    <div><h3>Tools</h3><p>Git and GitHub, VS Code, LaTeX, Google Apps Script, phpMyAdmin</p></div>
+    <div><h3>AI-assisted development</h3><p>Claude, ChatGPT, Gemini and GitHub Copilot for building, testing and documenting software</p></div>
+    <div><h3>Office and design</h3><p>Excel (Pivot Tables, VLOOKUP), Word, PowerPoint, Google Workspace, Canva</p></div>
+    <div><h3>Working with people</h3><p>Clear written English, documentation, supporting non-technical staff, teamwork, time management</p></div>
+  </div>
+</section>
+
+<section id="experience" class="wrap">
+  <h2 class="sec"><span>Experience and education</span></h2>
+  <ol class="timeline">
+    <li>
+      <p class="when">Feb 2025 – Present</p>
+      <div>
+        <h3>Student on Duty, Department of English and Modern Languages</h3>
+        <p class="where">Independent University, Bangladesh</p>
+        <p>Built the ELRC Management System for the department's language centre, from concept to live deployment. Support daily administrative operations, documentation and student coordination, and provide technical support for events and meetings.</p>
+      </div>
+    </li>
+    <li>
+      <p class="when">Jan 2025 – Jun 2025</p>
+      <div>
+        <h3>LaTeX Content Specialist</h3>
+        <p class="where">Tech Trio Z</p>
+        <p>Converted Mathematics, Physics, Chemistry, Biology, Bengali and English question content into structured LaTeX for web publishing, typesetting complex equations accurately.</p>
+      </div>
+    </li>
+    <li>
+      <p class="when">Sep 2024 – Jan 2025</p>
+      <div>
+        <h3>Student on Duty, Department of Computer Science and Engineering</h3>
+        <p class="where">Independent University, Bangladesh</p>
+        <p>Guided students through course registration and supported academic event logistics and reporting.</p>
+      </div>
+    </li>
+    <li>
+      <p class="when">2022 – Present</p>
+      <div>
+        <h3>BSc in Computer Science, Minor in Human Resource Management</h3>
+        <p class="where">Independent University, Bangladesh · expected graduation 2026</p>
+        <p>Coursework: Web and Mobile Application Development, Database Management Systems, Algorithms, Object-Oriented Programming, Business English.</p>
+      </div>
+    </li>
+  </ol>
+  <div class="also">
+    <div><h3>Certification</h3><p>Cisco CCNAv7: Introduction to Networks, completed with a Letter of Merit (April 2024)</p></div>
+    <div><h3>Leadership</h3><p>Membership Chair, IUB ACM Student Chapter (2026 – present); Content Writer (2024 – 2025)</p></div>
+    <div><h3>Volunteering</h3><p>IUB 25th and 26th Convocations, ceremonial and credential teams</p></div>
+  </div>
+</section>
+
+<section id="contact" class="wrap contact">
+  <h2>Let's talk.</h2>
+  <p class="lead">I'm looking for a junior web or software developer role. The fastest way to reach me is email.</p>
+  <div class="actions">
+    <a class="btn primary" href="mailto:fuaadhassaan@gmail.com">fuaadhassaan@gmail.com</a>
+    <button type="button" class="btn" id="copy-email">Copy email</button>
+    <a class="btn" href="assets/Md_Fuad_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV <span aria-hidden="true">↓</span></a>
+  </div>
+  <p class="links big"><a href="https://www.linkedin.com/in/md-fuaad-hassaan/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/fuaadhassaan" target="_blank" rel="noopener">GitHub ↗</a></p>
+  <p id="copied" class="fine" role="status" aria-live="polite"></p>
+</section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>© <span id="year">2026</span> Md. Fuad Hasan · Uttara, Dhaka</p>
+  <p>Built with plain HTML, CSS and a little JavaScript.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
