@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="styles.css">
 <script>
   // The theme, before first paint. Remembered per browser; otherwise the system's.
+  document.documentElement.classList.add('js');
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
 </head>
@@ -37,16 +38,32 @@
 
 <main id="home">
 
+<div class="progress" id="progress" aria-hidden="true"></div>
 <section class="hero wrap">
-  <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Open to junior web and software developer roles · Dhaka, Bangladesh</p>
-  <h1>I build web applications that people use at work, every day.</h1>
-  <p class="lead">I'm <strong>Md. Fuad Hasan</strong>, a final-year Computer Science student at Independent University, Bangladesh. I designed and built the system a university language centre now runs on: five role-based consoles, one live database, attendance to payroll paperwork.</p>
-  <div class="actions">
-    <a class="btn primary" href="#work">See my work</a>
-    <a class="btn" href="assets/Md_Fuad_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV <span aria-hidden="true">↓</span></a>
-    <a class="btn ghost" href="mailto:fuaadhassaan@gmail.com">Email me</a>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow rise"><span class="dot" aria-hidden="true"></span>Open to junior web and software developer roles · Dhaka, Bangladesh</p>
+      <h1 class="rise d1">I build web applications that people <span class="hl">use at work</span>, every day.</h1>
+      <p class="lead rise d2">I'm <strong>Md. Fuad Hasan</strong>, a final-year Computer Science student at Independent University, Bangladesh. I designed and built the system a university language centre now runs on: five role-based consoles, one live database, attendance to payroll paperwork.</p>
+      <div class="actions rise d3">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="assets/Md_Fuad_Hasan_CV.pdf" target="_blank" rel="noopener">Download CV <span aria-hidden="true">↓</span></a>
+        <a class="btn ghost" href="mailto:fuaadhassaan@gmail.com">Email me</a>
+      </div>
+    </div>
+    <figure class="portrait rise d2">
+      <div class="portrait-frame"><img src="assets/fuad.jpg" alt="Md. Fuad Hasan at Independent University, Bangladesh" width="900" height="892"></div>
+      <figcaption><span class="dot" aria-hidden="true"></span>Available for work</figcaption>
+    </figure>
   </div>
-  <ul class="facts" aria-label="At a glance">
+  <div class="marquee rise d3" aria-hidden="true">
+    <div class="marquee-track">
+      <span>JavaScript</span><span>Firebase</span><span>PHP</span><span>Flutter</span><span>Firestore</span><span>MySQL</span><span>HTML5</span><span>CSS3</span><span>Dart</span><span>Git</span><span>Vercel</span><span>Java</span><span>C++</span><span>LaTeX</span>
+      <span>JavaScript</span><span>Firebase</span><span>PHP</span><span>Flutter</span><span>Firestore</span><span>MySQL</span><span>HTML5</span><span>CSS3</span><span>Dart</span><span>Git</span><span>Vercel</span><span>Java</span><span>C++</span><span>LaTeX</span>
+    </div>
+  </div>
+  <ul class="facts rise d3" aria-label="At a glance">
     <li><b>4</b><span>projects live on the web</span></li>
     <li><b>5</b><span>user roles in one system</span></li>
     <li><b>2 yrs</b><span>university office experience</span></li>
@@ -55,9 +72,9 @@
 </section>
 
 <section id="work" class="wrap">
-  <h2 class="sec"><span>Selected work</span></h2>
+  <h2 class="sec reveal"><span>Selected work</span></h2>
 
-  <article class="feature">
+  <article class="feature reveal">
     <div class="feature-text">
       <p class="tag">Case study · 2026 · Independent University, Bangladesh</p>
       <h3>ELRC Management System</h3>
@@ -82,7 +99,7 @@
   </article>
 
   <div class="grid">
-    <article class="card">
+    <article class="card reveal">
       <a class="shot" href="https://pushtipath.web.app" target="_blank" rel="noopener"><img src="assets/pushtipath.webp" alt="PushtiPath sign-in screen in Bangla" width="1280" height="800"></a>
       <div class="card-body">
         <p class="tag">Mobile health · 2026</p>
@@ -93,7 +110,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <a class="shot" href="https://dticket.vercel.app" target="_blank" rel="noopener"><img src="assets/dticket.webp" alt="DTicket landing page: the all-in-one ticketing website" width="1280" height="800"></a>
       <div class="card-body">
         <p class="tag">Booking platform · 2025 – 2026</p>
@@ -104,7 +121,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <a class="shot" href="https://iubacmwpm.vercel.app" target="_blank" rel="noopener"><img src="assets/wpm.webp" alt="IUB ACM typing contest website after the contest closed" width="1280" height="800"></a>
       <div class="card-body">
         <p class="tag">Event site · IUB ACM Student Chapter</p>
@@ -115,7 +132,7 @@
       </div>
     </article>
 
-    <article class="card plain">
+    <article class="card plain reveal">
       <div class="card-body">
         <p class="tag">HR platform</p>
         <h3>FairHire+</h3>
@@ -134,8 +151,8 @@
 </section>
 
 <section id="skills" class="wrap">
-  <h2 class="sec"><span>Skills</span></h2>
-  <div class="skills">
+  <h2 class="sec reveal"><span>Skills</span></h2>
+  <div class="skills reveal">
     <div><h3>Languages</h3><p>JavaScript (ES6+), PHP, Dart, Java, C++, SQL, HTML5, CSS3</p></div>
     <div><h3>Frameworks and platforms</h3><p>Firebase (Firestore, Authentication, Security Rules, Hosting), Flutter, MySQL, Vercel, Arduino / ESP32</p></div>
     <div><h3>Tools</h3><p>Git and GitHub, VS Code, LaTeX, Google Apps Script, phpMyAdmin</p></div>
@@ -146,8 +163,8 @@
 </section>
 
 <section id="experience" class="wrap">
-  <h2 class="sec"><span>Experience and education</span></h2>
-  <ol class="timeline">
+  <h2 class="sec reveal"><span>Experience and education</span></h2>
+  <ol class="timeline reveal">
     <li>
       <p class="when">Feb 2025 – Present</p>
       <div>
@@ -181,14 +198,14 @@
       </div>
     </li>
   </ol>
-  <div class="also">
+  <div class="also reveal">
     <div><h3>Certification</h3><p>Cisco CCNAv7: Introduction to Networks, completed with a Letter of Merit (April 2024)</p></div>
     <div><h3>Leadership</h3><p>Membership Chair, IUB ACM Student Chapter (2026 – present); Content Writer (2024 – 2025)</p></div>
     <div><h3>Volunteering</h3><p>IUB 25th and 26th Convocations, ceremonial and credential teams</p></div>
   </div>
 </section>
 
-<section id="contact" class="wrap contact">
+<section id="contact" class="wrap contact reveal">
   <h2>Let's talk.</h2>
   <p class="lead">I'm looking for a junior web or software developer role. The fastest way to reach me is email.</p>
   <div class="actions">

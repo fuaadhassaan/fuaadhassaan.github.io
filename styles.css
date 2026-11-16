@@ -135,3 +135,61 @@ section { padding-block: 44px; }
   .shot img { transition: none; }
 }
 @media print { .top, .actions, .foot { display: none; } }
+
+/* ---- Photo, motion and polish ---- */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--accent), var(--ok)); z-index: 20; }
+.hero { position: relative; }
+.glow { position: absolute; inset: -80px -10% auto auto; width: min(620px, 80vw); height: 520px; background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%); filter: blur(20px); z-index: -1; animation: drift 14s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-60px, 40px, 0) scale(1.12); } }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 44px; align-items: center; }
+.hero-text { display: grid; gap: 22px; min-width: 0; }
+.hl { background: linear-gradient(100deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--ok))); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.portrait { margin: 0; justify-self: end; width: min(100%, 340px); position: relative; }
+.portrait-frame { border-radius: 26px; padding: 4px; background: linear-gradient(140deg, var(--accent), color-mix(in srgb, var(--ok) 70%, var(--accent)) 60%, transparent); box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--accent) 55%, transparent); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.portrait-frame img { border-radius: 22px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; width: 100%; }
+.portrait:hover .portrait-frame { transform: translateY(-6px) rotate(-1.2deg); }
+.portrait figcaption { position: absolute; left: -14px; bottom: 22px; display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; box-shadow: 0 10px 30px -12px rgba(0,0,0,.35); animation: bob 4s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-6px); } }
+.dot { animation: pulse 2.2s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
+
+.marquee { overflow: hidden; margin-top: 10px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee-track { display: flex; gap: 12px; width: max-content; animation: slide 36s linear infinite; }
+.marquee-track span { font: 600 13.5px var(--head); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); white-space: nowrap; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Entrance: the hero rises once on load; lower blocks rise as they are scrolled to. Without JS, everything is simply shown. */
+.rise { animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+.d1 { animation-delay: .08s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .3s; }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } }
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+.card, .feature { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s, opacity .7s ease; }
+.card:hover, .feature:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 22px 50px -28px color-mix(in srgb, var(--accent) 60%, transparent); }
+.js .card.in:hover { transform: translateY(-5px); }
+.btn { transition: transform .2s, border-color .2s, filter .2s, box-shadow .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.primary { box-shadow: 0 10px 24px -12px var(--accent); }
+.top nav a { position: relative; }
+.top nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.top nav a:hover::after, .top nav a.on::after { transform: scaleX(1); }
+.top nav a.on { color: var(--ink); }
+.timeline li { transition: background .25s; }
+.timeline li:hover { background: color-mix(in srgb, var(--accent-soft) 55%, transparent); }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  .portrait { justify-self: start; width: min(72%, 280px); order: -1; }
+  .portrait figcaption { left: auto; right: -18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise, .glow, .marquee-track, .dot, .portrait figcaption { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn:hover, .js .card.in:hover, .portrait:hover .portrait-frame { transform: none; }
+}
+
+/* The hero glow and the photo badge reach past the column; keep the page from scrolling sideways. */
+html, body { overflow-x: clip; }
+@media (max-width: 860px) { .portrait figcaption { right: -8px; } }
