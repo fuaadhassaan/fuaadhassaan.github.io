@@ -299,3 +299,70 @@ html { scroll-padding-top: 96px; }
   .top nav a { padding: 6px 6px; font-size: 12.5px; }
   .icon-btn { width: 34px; height: 34px; flex: none; }
 }
+
+/* ---- Projects: browser frames, staggered entrances, hover motion ---- */
+@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+/* A browser window around every screenshot */
+.browser { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); box-shadow: 0 24px 50px -30px rgba(0, 0, 0, .45); position: relative; }
+.chrome { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; background: color-mix(in srgb, var(--line) 45%, var(--surface)); border-bottom: 1px solid var(--line); }
+.chrome i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; flex: none; }
+.chrome i:nth-child(2) { background: #febc2e; } .chrome i:nth-child(3) { background: #28c840; }
+.chrome em { font: 500 11px var(--body); font-style: normal; color: var(--muted); margin-left: 10px; padding: 3px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.shot { aspect-ratio: auto; border: 0; background: none; margin: 12px 12px 0; overflow: visible; }
+.shot .browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; height: auto; }
+.feature-shot .browser img { border: 0; border-radius: 0; }
+
+/* Hover: the screenshot zooms a little, a light sweeps across it, and "View live" appears */
+.shot .browser img, .feature-shot .browser img { transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.card:hover .shot .browser img, .feature:hover .feature-shot .browser img { transform: scale(1.04); }
+.browser::after { content: ""; position: absolute; inset: 30px 0 0; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .28) 48%, transparent 66%); transform: translateX(-110%); pointer-events: none; }
+.card:hover .browser::after, .feature:hover .browser::after { transform: translateX(110%); transition: transform .9s ease; }
+.peek { position: absolute; inset: 30px 0 0; display: grid; place-items: center; background: color-mix(in srgb, #0b1220 45%, transparent); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.peek b { font: 600 14px var(--body); color: #fff; padding: 10px 18px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 88%, #000); box-shadow: 0 10px 30px -10px #000; transform: translateY(10px) scale(.95); transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.shot:hover .peek, .shot:focus-visible .peek { opacity: 1; }
+.shot:hover .peek b, .shot:focus-visible .peek b { transform: none; }
+
+/* Live badge */
+.tag { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.live { display: inline-flex; align-items: center; gap: 6px; font: 600 11.5px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--ok); padding: 3px 10px 3px 8px; border-radius: 999px; background: color-mix(in srgb, var(--ok) 12%, transparent); border: 1px solid color-mix(in srgb, var(--ok) 35%, transparent); }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); animation: pulse 2s ease-out infinite; }
+
+/* Faint project number in the corner */
+.card { overflow: hidden; }
+.card[data-num]::after { content: attr(data-num); position: absolute; right: 18px; bottom: -14px; font: 700 96px/1 var(--head); color: color-mix(in srgb, var(--accent) 7%, transparent); pointer-events: none; z-index: -1; transition: color .4s, transform .6s cubic-bezier(.2, .8, .2, 1); }
+.card[data-num]:hover::after { color: color-mix(in srgb, var(--accent) 14%, transparent); transform: translateY(-8px); }
+
+/* A turning gradient border on hover */
+.card > .ring { position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: conic-gradient(from var(--angle), transparent 0 55%, var(--accent), var(--ok), transparent 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.card:hover > .ring { opacity: 1; animation: turn 3.2s linear infinite; }
+@keyframes turn { to { --angle: 360deg; } }
+
+/* Tilt is set from script; it eases back when the pointer leaves */
+.card.tilting { transition: transform .12s ease-out, box-shadow .3s, border-color .3s; will-change: transform; }
+
+/* Entrances: cards one after another, then their tags pop in, then the case study's points */
+.grid .reveal { transition-delay: calc(var(--i, 0) * 110ms); }
+.js .reveal .stack span { opacity: 0; transform: translateY(8px) scale(.9); }
+.js .reveal.in .stack span { opacity: 1; transform: none; transition: opacity .4s ease, transform .45s cubic-bezier(.2, .8, .2, 1.4); transition-delay: calc(var(--j, 0) * 55ms + var(--i, 0) * 110ms + 350ms); }
+.js .feature.reveal .ticks li { opacity: 0; transform: translateX(-12px); }
+.js .feature.reveal.in .ticks li { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--j, 0) * 90ms + 300ms); }
+.js .feature.reveal .feature-shot { opacity: 0; transform: translateY(24px) rotate(1.5deg); }
+.js .feature.reveal.in .feature-shot { opacity: 1; transform: none; transition: opacity .8s ease .2s, transform .9s cubic-bezier(.2, .8, .2, 1) .2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover > .ring { animation: none; }
+  .live::before { animation: none; }
+  .card:hover .browser::after, .feature:hover .browser::after { transition: none; transform: translateX(-110%); }
+  .card:hover .shot .browser img, .feature:hover .feature-shot .browser img { transform: none; }
+  .js .reveal .stack span, .js .feature.reveal .ticks li, .js .feature.reveal .feature-shot { opacity: 1; transform: none; transition: none; }
+}
+
+/* The frame inside a card link is a span; it must lay out as a box. */
+.shot .browser, .shot .chrome, .shot .peek, .shot .browser img { display: block; }
+.shot .chrome { display: flex; }
+.shot .peek { display: grid; }
+.peek b { white-space: nowrap; }
+.shot, .shot:hover { text-decoration: none; }

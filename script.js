@@ -115,3 +115,33 @@
   }, { threshold: 0.6 });
   numbers.forEach(function (b) { watch.observe(b); });
 })();
+
+// Projects: stagger indexes for tags and points, and a gentle 3D tilt that follows the pointer.
+(function () {
+  document.querySelectorAll('.stack, .ticks').forEach(function (list) {
+    Array.prototype.forEach.call(list.children, function (item, j) { item.style.setProperty('--j', j); });
+  });
+
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (still || !fine) return;
+
+  document.querySelectorAll('.grid .card').forEach(function (card) {
+    var frame = 0;
+    card.addEventListener('pointermove', function (event) {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        frame = 0;
+        var box = card.getBoundingClientRect();
+        var x = (event.clientX - box.left) / box.width - 0.5;
+        var y = (event.clientY - box.top) / box.height - 0.5;
+        card.classList.add('tilting');
+        card.style.transform = 'perspective(900px) rotateX(' + (-y * 5).toFixed(2) + 'deg) rotateY(' + (x * 6).toFixed(2) + 'deg) translateY(-6px)';
+      });
+    });
+    card.addEventListener('pointerleave', function () {
+      card.style.transform = '';
+      window.setTimeout(function () { card.classList.remove('tilting'); }, 150);
+    });
+  });
+})();
