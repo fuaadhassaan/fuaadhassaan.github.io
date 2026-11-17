@@ -193,3 +193,109 @@ section { padding-block: 44px; }
 /* The hero glow and the photo badge reach past the column; keep the page from scrolling sideways. */
 html, body { overflow-x: clip; }
 @media (max-width: 860px) { .portrait figcaption { right: -8px; } }
+
+/* ---- Modern finish: floating glass nav, dot-grid backdrop, card spotlight, bento skills ---- */
+
+/* Backdrop: a faint dot grid that fades out down the page, under two slow colour fields. */
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%); }
+body::after { content: ""; position: fixed; inset: -20% -10% auto; height: 70vh; z-index: -3; pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 15% 30%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(35% 45% at 85% 10%, color-mix(in srgb, var(--ok) 12%, transparent), transparent 70%);
+  animation: aurora 18s ease-in-out infinite alternate; }
+@keyframes aurora { to { transform: translate3d(0, 6%, 0) scale(1.08); } }
+
+/* Floating glass nav */
+.top { background: transparent; border-bottom: 0; backdrop-filter: none; padding-top: 12px; }
+.top-in { max-width: 1040px; min-height: 58px; padding: 6px 8px 6px 8px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  background: color-mix(in srgb, var(--surface) 72%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .35); transition: box-shadow .3s, background .3s; }
+.top.scrolled .top-in { box-shadow: 0 16px 40px -18px rgba(0, 0, 0, .5); background: color-mix(in srgb, var(--surface) 86%, transparent); }
+.brand { gap: 10px; padding-right: 6px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px color-mix(in srgb, var(--accent) 70%, transparent); transition: transform .3s; }
+.brand:hover .avatar { transform: rotate(-6deg) scale(1.06); }
+.brand-name { display: grid; line-height: 1.1; }
+.brand-name small { font: 500 11.5px var(--body); color: var(--muted); letter-spacing: .02em; }
+.top nav { gap: 4px; }
+.top nav a { padding: 8px 14px; border-radius: 999px; }
+.top nav a::after { display: none; }
+.top nav a:hover, .top nav a.on { background: var(--accent-soft); color: var(--accent); }
+.icon-btn { border-radius: 50%; width: 40px; height: 40px; }
+html { scroll-padding-top: 96px; }
+
+/* Primary button: gradient with a passing shine */
+.btn.primary { background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--ok))); border: 0; position: relative; overflow: hidden; }
+.btn.primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%); transform: translateX(-120%); }
+.btn.primary:hover::after { transform: translateX(120%); transition: transform .7s ease; }
+.btn { border-radius: 999px; }
+
+/* Facts as small glass tiles */
+.facts { gap: 12px; border-top: 0; }
+.facts li { padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: color-mix(in srgb, var(--surface) 70%, transparent); backdrop-filter: blur(6px); }
+.facts b { background: linear-gradient(100deg, var(--ink), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Section headings: small label, then a large line */
+.sec { margin-bottom: 8px; }
+.sec-title { font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em; margin-bottom: 26px; max-width: 22ch; }
+
+/* Cards: rounder, with a glow that follows the pointer */
+.feature, .card { border-radius: 22px; position: relative; isolation: isolate; }
+.feature::before, .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; opacity: 0; transition: opacity .3s; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%); }
+.feature:hover::before, .card:hover::before { opacity: 1; }
+.feature { background: linear-gradient(var(--surface), var(--surface)) padding-box, linear-gradient(140deg, color-mix(in srgb, var(--accent) 60%, var(--line)), var(--line) 40%, color-mix(in srgb, var(--ok) 50%, var(--line))) border-box; border: 1px solid transparent; }
+.shot { border-radius: 14px; margin: 10px 10px 0; border: 1px solid var(--line); }
+.stack span { border-radius: 999px; }
+
+/* Skills as a bento of cards */
+.skills { gap: 14px; }
+.skills > div { border: 1px solid var(--line); border-radius: 18px; padding: 20px; background: var(--surface); transition: transform .3s, border-color .3s, box-shadow .3s; }
+.skills > div:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 18px 40px -26px color-mix(in srgb, var(--accent) 70%, transparent); }
+.skills h3 { display: flex; align-items: center; gap: 10px; }
+.skills h3::before { content: attr(data-icon); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-size: 15px; }
+
+/* Timeline with a rail */
+.timeline { position: relative; }
+.timeline li { border-top: 0; border-radius: 16px; padding: 18px 16px; }
+.timeline li + li { margin-top: 2px; }
+.when { font-weight: 600; color: var(--accent); }
+.also > div { border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; background: var(--surface); }
+.also { border-top: 0; }
+
+/* Contact as a closing panel */
+.contact { margin-top: 20px; border-radius: 28px; padding: 48px clamp(22px, 5vw, 56px); border: 1px solid var(--line);
+  background: radial-gradient(60% 120% at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%), var(--surface); }
+.wrap.contact { max-width: 1040px; }
+
+/* Back to top */
+.to-top { position: fixed; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; cursor: pointer; z-index: 15;
+  box-shadow: 0 12px 30px -14px rgba(0,0,0,.45); opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .3s, transform .3s; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 720px) {
+  .top { padding-top: 8px; }
+  .top-in { border-radius: 20px; margin-inline: 10px; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+  .brand-name { display: none; }
+  .top nav a { padding: 7px 9px; font-size: 13.5px; }
+  .avatar { width: 36px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+  .skills > div:hover { transform: none; }
+  .btn.primary:hover::after { transition: none; }
+}
+
+/* Narrow phones: the four links and the theme button must fit in the pill. */
+@media (max-width: 440px) {
+  .top-in { gap: 6px; margin-inline: 8px; }
+  .top nav { gap: 0; }
+  .top nav a { padding: 6px 6px; font-size: 12.5px; }
+  .icon-btn { width: 34px; height: 34px; flex: none; }
+}

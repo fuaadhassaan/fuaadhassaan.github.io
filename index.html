@@ -10,7 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fuaadhassaan.github.io/">
 <meta property="og:image" content="https://fuaadhassaan.github.io/assets/elrc-dashboard.png">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1457c8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
@@ -25,7 +30,7 @@
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="brand" href="#home" aria-label="Md. Fuad Hasan, home"><span class="mono">FH</span><span>Fuad Hasan</span></a>
+    <a class="brand" href="#home" aria-label="Md. Fuad Hasan, home"><img class="avatar" src="assets/avatar.png" alt="" width="96" height="96"><span class="brand-name">Fuad Hasan<small>Web Developer</small></span></a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#skills">Skills</a>
@@ -73,6 +78,7 @@
 
 <section id="work" class="wrap">
   <h2 class="sec reveal"><span>Selected work</span></h2>
+  <p class="sec-title reveal">Things I have built, shipped and kept running.</p>
 
   <article class="feature reveal">
     <div class="feature-text">
@@ -152,18 +158,20 @@
 
 <section id="skills" class="wrap">
   <h2 class="sec reveal"><span>Skills</span></h2>
+  <p class="sec-title reveal">The tools I reach for, and how I work.</p>
   <div class="skills reveal">
-    <div><h3>Languages</h3><p>JavaScript (ES6+), PHP, Dart, Java, C++, SQL, HTML5, CSS3</p></div>
-    <div><h3>Frameworks and platforms</h3><p>Firebase (Firestore, Authentication, Security Rules, Hosting), Flutter, MySQL, Vercel, Arduino / ESP32</p></div>
-    <div><h3>Tools</h3><p>Git and GitHub, VS Code, LaTeX, Google Apps Script, phpMyAdmin</p></div>
-    <div><h3>AI-assisted development</h3><p>Claude, ChatGPT, Gemini and GitHub Copilot for building, testing and documenting software</p></div>
-    <div><h3>Office and design</h3><p>Excel (Pivot Tables, VLOOKUP), Word, PowerPoint, Google Workspace, Canva</p></div>
-    <div><h3>Working with people</h3><p>Clear written English, documentation, supporting non-technical staff, teamwork, time management</p></div>
+    <div><h3 data-icon="{ }">Languages</h3><p>JavaScript (ES6+), PHP, Dart, Java, C++, SQL, HTML5, CSS3</p></div>
+    <div><h3 data-icon="◆">Frameworks and platforms</h3><p>Firebase (Firestore, Authentication, Security Rules, Hosting), Flutter, MySQL, Vercel, Arduino / ESP32</p></div>
+    <div><h3 data-icon="⚙">Tools</h3><p>Git and GitHub, VS Code, LaTeX, Google Apps Script, phpMyAdmin</p></div>
+    <div><h3 data-icon="✦">AI-assisted development</h3><p>Claude, ChatGPT, Gemini and GitHub Copilot for building, testing and documenting software</p></div>
+    <div><h3 data-icon="▤">Office and design</h3><p>Excel (Pivot Tables, VLOOKUP), Word, PowerPoint, Google Workspace, Canva</p></div>
+    <div><h3 data-icon="☺">Working with people</h3><p>Clear written English, documentation, supporting non-technical staff, teamwork, time management</p></div>
   </div>
 </section>
 
 <section id="experience" class="wrap">
   <h2 class="sec reveal"><span>Experience and education</span></h2>
+  <p class="sec-title reveal">Where I have been working and learning.</p>
   <ol class="timeline reveal">
     <li>
       <p class="when">Feb 2025 – Present</p>
@@ -224,6 +232,7 @@
   <p>Built with plain HTML, CSS and a little JavaScript.</p>
 </footer>
 
+<button type="button" class="to-top" id="to-top" aria-label="Back to top">↑</button>
 <script src="script.js"></script>
 </body>
 </html>
