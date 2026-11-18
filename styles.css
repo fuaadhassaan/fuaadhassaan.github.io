@@ -366,3 +366,49 @@ html { scroll-padding-top: 96px; }
 .shot .peek { display: grid; }
 .peek b { white-space: nowrap; }
 .shot, .shot:hover { text-decoration: none; }
+
+/* ---- AI and prompt engineering ---- */
+.ai-case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; padding: 32px; border-radius: 22px; position: relative; isolation: isolate;
+  border: 1px solid transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box, linear-gradient(140deg, color-mix(in srgb, var(--ok) 55%, var(--line)), var(--line) 45%, color-mix(in srgb, var(--accent) 60%, var(--line))) border-box; }
+.ai-text { display: grid; gap: 14px; min-width: 0; }
+.ai-text h3 { font-size: clamp(22px, 2.8vw, 30px); letter-spacing: -0.01em; }
+.ai-text > p:not(.tag):not(.stack) { color: var(--muted); }
+.prompt-card { margin: 0; min-width: 0; }
+.prompt-card .browser { background: #0d1422; border-color: #24324a; }
+.prompt-card .chrome { background: #141d2e; border-bottom-color: #24324a; }
+.prompt-card .chrome em { background: #0d1422; border-color: #24324a; color: #93a4c0; }
+.prompt-card pre { margin: 0; padding: 18px 18px 20px; overflow-x: auto; font: 12.5px/1.65 ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace; color: #d6e0f0; white-space: pre-wrap; word-break: break-word; }
+.prompt-card .c { color: #6f8099; font-style: italic; }
+.prompt-card .k { color: #8fc1ff; }
+.prompt-card .h { color: #b9a7ff; font-weight: 600; }
+.prompt-card .w { color: #ffb86b; font-weight: 600; }
+.prompt-card figcaption { font-size: 12.5px; color: var(--muted); margin-top: 8px; text-align: center; }
+.js .ai-case.reveal .prompt-card { opacity: 0; transform: translateY(24px) rotate(-1.5deg); }
+.js .ai-case.reveal.in .prompt-card { opacity: 1; transform: none; transition: opacity .8s ease .2s, transform .9s cubic-bezier(.2, .8, .2, 1) .2s; }
+.js .ai-case.reveal .ticks li { opacity: 0; transform: translateX(-12px); }
+.js .ai-case.reveal.in .ticks li { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--j, 0) * 90ms + 300ms); }
+
+.ai-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 22px; }
+.ai-grid .reveal { transition-delay: calc(var(--i, 0) * 110ms); }
+.spec { margin: 4px 0; padding: 14px 16px; border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; background: var(--accent-soft); color: var(--ink); font-size: 15px; display: grid; gap: 6px; }
+.spec-label { font: 600 11.5px var(--body); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.steps { counter-reset: step; display: grid; gap: 12px; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; color: var(--muted); font-size: 15px; }
+.steps li::before { content: counter(step); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font: 700 14px var(--head); }
+.steps b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .ai-case { grid-template-columns: 1fr; padding: 22px; }
+  .ai-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 440px) {
+  .top nav a { padding: 6px 5px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .ai-case.reveal .prompt-card, .js .ai-case.reveal .ticks li { opacity: 1; transform: none; transition: none; }
+}
+
+/* Steps: one line of text per item, the number set beside it. */
+.steps li { display: block; position: relative; padding-left: 44px; min-height: 30px; padding-top: 4px; }
+.steps li::before { position: absolute; left: 0; top: 0; }
